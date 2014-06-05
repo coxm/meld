@@ -7,12 +7,30 @@
  * @author Brian Cavalier
  * @author John Hann
  */
-(function(define) {
-define(function(require) {
 
-	var meld, joinpoint, depth, padding, simpleReporter;
+/*
+returnExports UMD: https://github.com/umdjs/umd/blob/master/returnExports.js
+*/
 
-	meld = require('../meld');
+(function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+      // AMD
+      define(['meld'], factory);
+    } else if (typeof exports === 'object') {
+      // Node
+      module.exports = factory(require('../meld'));
+    } else {
+      // Browser globals
+      root.returnExports = factory(root.meld);
+    }
+}(this, function (meld) {
+  //use b in some fashion.
+
+  // Just return a value to define the module export.
+  // This example returns an object, but the module
+  // can return a function as the exported value.
+	var joinpoint, depth, padding, simpleReporter;
+
 	joinpoint = meld.joinpoint;
 
 	// Call stack depth tracking for the default reporter
@@ -80,5 +98,4 @@ define(function(require) {
 		return padding.slice(0, depth-1);
 	}
 
-});
-}(typeof define === 'function' && define.amd ? define : function(factory) { module.exports = factory(require); }));
+}));
