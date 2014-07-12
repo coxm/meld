@@ -13,8 +13,21 @@
  * @author John Hann
  * @version 1.3.1
  */
-(function (define) {
-define(function () {
+(function(root, factory) {
+  if (typeof exports === 'object') {
+    // Node. Does not work with strict CommonJS, but
+    // only CommonJS-like enviroments that support module.exports,
+    // like Node.
+    module.exports = factory();
+  } else if (typeof define === 'function' && define.amd) {
+    // AMD. Register as an anonymous module.
+    define(factory);
+  } else {
+    // Browser globals (root is window)
+    root.meld = factory();
+  }
+}(this, function() {
+
 
 	//
 	// Public API
@@ -593,6 +606,4 @@ define(function () {
 
 	return meld;
 
-});
-})(typeof define == 'function' && define.amd ? define : function (factory) { module.exports = factory(); }
-);
+}));
