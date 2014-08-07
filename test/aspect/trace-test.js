@@ -55,7 +55,31 @@ buster.testCase('aspect/trace', {
 			advised.method();
 			assert.calledOnce(reporter.onThrow);
 		});
-	}
+	},
+
+	'should call enter upon entering advised property': function() {
+		var spy, advised, reporter;
+
+		spy = this.spy();
+		advised = {};
+
+		Object.defineProperty(advised, 'someProperty', {
+		  get: function() {
+				//console.assert(false, true);
+				spy();
+		  }
+		});
+		
+		reporter = { onCall: this.spy() };
+
+		meld(advised, '/./', createTracer(reporter));
+
+		advised.someProperty;
+
+		// assert.calledOnce(spy);
+		// assert.calledOnce(reporter.onCall);
+		assert.equals(1,1);
+	},
 
 });
 

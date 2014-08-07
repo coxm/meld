@@ -3,9 +3,9 @@
 	"node": true,
 
 	"predef": [
-        "define",
-        "module"
-    ],
+    "module",
+    "define",
+  ],
 
 	"boss": true,
 	"curly": true,
@@ -22,7 +22,5 @@
 	"trailing": true,
 	"undef": true,
 	"unused": true,
-
 	"maxdepth": 4,
-	"maxcomplexity": 6
 }
