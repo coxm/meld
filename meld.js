@@ -450,7 +450,7 @@
 			// Check if is it a property defined with Object.defineProperty()
 		  // saitodisse
 		  var propertyDescription = Object.getOwnPropertyDescriptor(target, p);
-		  if( propertyDescription.hasOwnProperty('get') ){
+		  if( propertyDescription && propertyDescription.hasOwnProperty('get') ){
 		  	//isFunction = typeof propertyDescription.get == 'function';
 		  	isFunction = false;
 		  }
